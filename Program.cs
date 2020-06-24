@@ -26,25 +26,25 @@ namespace SimpleHashingExample
         
             Console.WriteLine("-------------------------------------------------------------------------------------------");
 
-            foreach(var sha in algorithms)
+            foreach(var hashAlgorithm in algorithms)
             {
                 byte[] passBytes;
                 byte[] hashBytes;
                 string hashed;
 
-                using(sha)
+                using(hashAlgorithm)
                 {
-                    Console.WriteLine("Hashing \"{0}\" {1} time(s) using {2}", pswd, HashCount, sha.GetType().FullName.Split(".").Last().Replace("+Implementation", ""));
+                    Console.WriteLine("Hashing \"{0}\" {1} time(s) using {2}", pswd, HashCount, hashAlgorithm.GetType().FullName.Split(".").Last().Replace("+Implementation", ""));
 
                     var timer = new Stopwatch();
                     timer.Start();
 
                     passBytes = Encoding.UTF8.GetBytes(pswd);
-                    hashBytes = sha.ComputeHash(passBytes);
+                    hashBytes = hashAlgorithm.ComputeHash(passBytes);
 
                     foreach(var i in Enumerable.Range(1, HashCount))
                     {
-                        hashBytes = sha.ComputeHash(hashBytes);
+                        hashBytes = hashAlgorithm.ComputeHash(hashBytes);
                     }
 
                     hashed = string.Concat(hashBytes.Select(b => b.ToString("x2")));
