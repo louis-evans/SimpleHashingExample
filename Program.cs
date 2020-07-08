@@ -9,6 +9,7 @@ namespace SimpleHashingExample
     class Program
     {
         private const int HashCount = 100000;
+        private const string Separator = "-------------------------------------------------------------------------------------------";
 
         static void Main(string[] args)
         {
@@ -24,7 +25,7 @@ namespace SimpleHashingExample
 
             var pswd = Console.ReadLine();
         
-            Console.WriteLine("-------------------------------------------------------------------------------------------");
+            Console.WriteLine(Separator);
 
             foreach(var hashAlgorithm in algorithms)
             {
@@ -52,7 +53,7 @@ namespace SimpleHashingExample
                     timer.Stop();
 
                     Console.WriteLine("{0} in {1} milliseconds", hashed, TimeSpan.FromTicks(timer.ElapsedTicks).TotalMilliseconds);
-                    Console.WriteLine("-------------------------------------------------------------------------------------------");
+                    Console.WriteLine(Separator);
                 }
             }
         }
